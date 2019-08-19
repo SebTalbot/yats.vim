@@ -5,7 +5,7 @@ syntax match typescriptUnaryOp /[+\-~!]/
 
 syntax region typescriptTernary matchgroup=typescriptTernaryOp start=/?/ end=/:/ contained contains=@typescriptValue,@typescriptComments nextgroup=@typescriptValue skipwhite skipempty
 
-syntax match   typescriptAssign  /=/ nextgroup=@typescriptValue
+syntax match   typescriptAssign  /=/ 
   \ skipwhite skipempty
 
 " 2: ==, ===
@@ -24,15 +24,15 @@ syntax match   typescriptBinaryOp contained /\*=\?/ nextgroup=@typescriptValue s
 syntax match   typescriptBinaryOp contained /%=\?/ nextgroup=@typescriptValue skipwhite skipempty
 " 2: /=, /
 syntax match   typescriptBinaryOp contained +/\(=\|[^\*/]\@=\)+ nextgroup=@typescriptValue skipwhite skipempty
-syntax match   typescriptBinaryOp contained /!==\?/ nextgroup=@typescriptValue skipwhite skipempty
 " 2: !=, !==
-syntax match   typescriptBinaryOp contained /+\(+\|=\)\?/ nextgroup=@typescriptValue skipwhite skipempty
+syntax match   typescriptBinaryOp contained /!==\?/ nextgroup=@typescriptValue skipwhite skipempty
 " 3: +, ++, +=
-syntax match   typescriptBinaryOp contained /-\(-\|=\)\?/ nextgroup=@typescriptValue skipwhite skipempty
+syntax match   typescriptBinaryOp contained /+\(+\|=\)\?/ nextgroup=@typescriptValue skipwhite skipempty
 " 3: -, --, -=
+syntax match   typescriptBinaryOp contained /-\(-\|=\)\?/ nextgroup=@typescriptValue skipwhite skipempty
 
 " exponentiation operator
 " 2: **, **=
 syntax match typescriptBinaryOp contained /\*\*=\?/ nextgroup=@typescriptValue
 
-syntax cluster typescriptSymbols               contains=typescriptBinaryOp,typescriptKeywordOp,typescriptTernary,typescriptAssign,typescriptCastKeyword
+syntax cluster typescriptSymbols contains=typescriptBinaryOp,typescriptKeywordOp,typescriptTernary,typescriptAssign,typescriptCastKeyword

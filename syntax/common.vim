@@ -46,7 +46,6 @@ if exists("did_typescript_hilink")
   HiLink typescriptReserved             Error
 
   HiLink typescriptEndColons            Exception
-  HiLink typescriptSymbols              Normal
   HiLink typescriptBraces               Function
   HiLink typescriptParens               Normal
   HiLink typescriptComment              Comment
@@ -153,6 +152,12 @@ if exists("did_typescript_hilink")
   HiLink typescriptTypeReference         Identifier
   HiLink typescriptConstructor           Keyword
   HiLink typescriptDecorator             Special
+
+  HiLink typescriptBinaryOp             Symbol
+  HiLink typescriptKeywordOp            Symbol
+  HiLink typescriptAssign               Symbol
+  HiLink typescriptCastKeyword          Symbol
+  HiLink typescriptTernaryOp            Symbol
 
   highlight link typeScript             NONE
 
