@@ -49,7 +49,7 @@ let s:skip_expr = "synIDattr(synID(line('.'),col('.'),1),'name') =~ '".s:syng_st
 let s:line_term = '\s*\%(\%(\/\/\).*\)\=$'
 
 " Regex that defines continuation lines, not including (, {, or [.
-let s:continuation_regex = '\%([\\*+/.:]\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\|[^=]=[^=].*,\)' . s:line_term
+let s:continuation_regex = '\%([\\*+/.:]\|\%(<%\)\@<![=-]\|\W[|&?]\|||\|&&\|[^=]=[^=]\)' . s:line_term
 
 " Regex that defines continuation lines.
 " TODO: this needs to deal with if ...: and so on
@@ -65,8 +65,8 @@ let s:var_stmt = '^\s*var'
 let s:comma_first = '^\s*,'
 let s:comma_last = ',\s*$'
 
-let s:ternary = '^\s\+[?|:]'
-let s:ternary_q = '^\s\+?'
+let s:ternary = '^\s\+[?:]'
+let s:ternary_q = '^\s\+?[.?]\@!'
 
 " 2. Auxiliary Functions {{{1
 " ======================
@@ -462,7 +462,7 @@ function! Fixedgq(lnum, count)
     if l:count > 1
         while l:count > 1
             let l:count -= 1
-            normal J
+            normal! J
         endwhile
     endif
 

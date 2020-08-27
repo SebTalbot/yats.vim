@@ -7,10 +7,12 @@ command -nargs=+ HiLink hi def link <args>
 
 "Dollar sign is permitted anywhere in an identifier
 setlocal iskeyword-=$
-if main_syntax == 'typescript' || main_syntax == 'typescript.tsx'
+if main_syntax == 'typescript' || main_syntax == 'typescriptreact'
   setlocal iskeyword+=$
   " syntax cluster htmlJavaScript                 contains=TOP
 endif
+" For private field added from TypeScript 3.8
+setlocal iskeyword+=#
 
 " lowest priority on least used feature
 syntax match   typescriptLabel                /[a-zA-Z_$]\k*:/he=e-1 contains=typescriptReserved nextgroup=@typescriptStatement skipwhite skipempty
@@ -52,6 +54,7 @@ if exists("did_typescript_hilink")
   HiLink typescriptLineComment          Comment
   HiLink typescriptDocComment           Comment
   HiLink typescriptCommentTodo          Todo
+  HiLink typescriptMagicComment         SpecialComment
   HiLink typescriptRef                  Include
   HiLink typescriptDocNotation          SpecialComment
   HiLink typescriptDocTags              SpecialComment
@@ -68,6 +71,7 @@ if exists("did_typescript_hilink")
   HiLink typescriptStringMember         String
   HiLink typescriptTemplate             String
   HiLink typescriptEventString          String
+  HiLink typescriptDestructureString    String
   HiLink typescriptASCII                Special
   HiLink typescriptTemplateSB           Label
   HiLink typescriptRegexpString         String
@@ -81,6 +85,7 @@ if exists("did_typescript_hilink")
   HiLink typescriptBranch               Conditional
   HiLink typescriptIdentifier           Structure
   HiLink typescriptVariable             Identifier
+  HiLink typescriptDestructureVariable  PreProc
   HiLink typescriptEnumKeyword          Identifier
   HiLink typescriptRepeat               Repeat
   HiLink typescriptForOperator          Repeat
@@ -92,14 +97,17 @@ if exists("did_typescript_hilink")
   HiLink typescriptType                 Type
   HiLink typescriptNull                 Boolean
   HiLink typescriptNumber               Number
-  HiLink typescriptExponent             Number
   HiLink typescriptBoolean              Boolean
   HiLink typescriptObjectLabel          typescriptLabel
+  HiLink typescriptDestructureLabel     Function
   HiLink typescriptLabel                Label
+  HiLink typescriptTupleLable           Label
   HiLink typescriptStringProperty       String
   HiLink typescriptImport               Special
+  HiLink typescriptImportType           Special
   HiLink typescriptAmbientDeclaration   Special
   HiLink typescriptExport               Special
+  HiLink typescriptExportType           Special
   HiLink typescriptModule               Special
   HiLink typescriptTry                  Special
   HiLink typescriptExceptions           Special
@@ -108,6 +116,7 @@ if exists("did_typescript_hilink")
   HiLink typescriptMethodAccessor       Operator
 
   HiLink typescriptAsyncFuncKeyword     Keyword
+  HiLink typescriptObjectAsyncKeyword   Keyword
   HiLink typescriptAsyncFor             Keyword
   HiLink typescriptFuncKeyword          Keyword
   HiLink typescriptAsyncFunc            Keyword
@@ -152,6 +161,7 @@ if exists("did_typescript_hilink")
   HiLink typescriptTypeReference         Identifier
   HiLink typescriptConstructor           Keyword
   HiLink typescriptDecorator             Special
+  HiLink typescriptAssertType            Keyword
 
   HiLink typescriptBinaryOp             Symbol
   HiLink typescriptKeywordOp            Symbol
